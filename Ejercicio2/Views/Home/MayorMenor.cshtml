@@ -1,14 +1,42 @@
 ﻿@model NumerosViewModel
+@{ 
+    int contador = 0;
+}
+<div>
+    <div class="float-left">
 
-<h1>La lista de números es:</h1>
-<ul class="table">
-    @foreach(int i in Model.Numeros)
-    {
-        <li>@i</li>
-    }
-</ul>
+        <h1>La lista de números es:</h1>
+        <ul class="table">
+            @for (int i = 0; i < Model.Numeros.Count; i++)
+            {
+                <li class="list-group-item"> <span class="badge badge-primary badge-pill">@(i+1)</span> @Model.Numeros[i]</li>
+            }
+        </ul>
+    </div>
 
-<h3>El número mayor es @Model.Mayor</h3>
-<h3>El número menor es @Model.Menor</h3>
+    <div class="float-right mt-lg-5">
+        <h3>El número mayor es @Model.Mayor</h3>
+        <h3>El número menor es @Model.Menor</h3>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Números Ingresados</th>
+            @for(int i = 0; i < 10; i++)
+            {
+                <th>Suma @(i + 1)° Número  (@Model.Numeros[i])</th>
+            }
+        </tr>
+        @for(int i = 0; i < Model.Numeros.Count; i++)
+        {
+            <tr>
+                <td>@Model.Numeros[i]</td>
+                @foreach(int j in Model.Numeros)
+                {
+                    <td>@(Model.Numeros[i] + j)</td>
+                }
+            </tr>
+        }
+    </table>
+</div>
 
-<a class="btn btn-primary" asp-controller="Home" asp-action="Index">Volver</a>
+<a class="btn btn-primary mt-lg-5" asp-controller="Home" asp-action="Index">Volver</a>
