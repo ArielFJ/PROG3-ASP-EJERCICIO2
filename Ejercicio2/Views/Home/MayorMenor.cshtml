@@ -1,0 +1,14 @@
+﻿@model NumerosViewModel
+
+<h1>La lista de números es:</h1>
+<ul class="table">
+    @foreach(int i in Model.Numeros)
+    {
+        <li>@i</li>
+    }
+</ul>
+
+<h3>El número mayor es @Model.Mayor</h3>
+<h3>El número menor es @Model.Menor</h3>
+
+<a class="btn btn-primary" asp-controller="Home" asp-action="Index">Volver</a>
